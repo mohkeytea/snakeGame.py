@@ -103,4 +103,48 @@ def game_loop():
         y1 += y1_change
 
         # clear the game display
-        game_display.fill(bl
+        game_display.fill(black)
+        
+        #Draw the food
+        pygame.draw.rect(game_display,red, [foodx, foody, snake_block, snake_block])
+        
+        #update the snake's head position
+        snake-head = []
+        snake-head.append(x1)
+        snake_head.append(y1)
+        snake_list.append(snake_head)
+        
+        #Remove the tail if the snake exceeds its length
+        if len(snake_list) > length_of_snake:
+               del snake_list[0]
+                
+        #check if the snake collides with itself
+        for x in snake_list[:-1]:
+            if x ==snake-head:
+                game_close = True
+                
+        # Draw the snake
+        draw_snake(snake_block, snake-list)
+        
+        #Display the score
+        display_score(length_of_snake -1)
+        
+         #update the game display
+            pygame.display.update()
+            
+         # check if the snake eats the food
+         if x1 == foodx and y1 == foody:
+                foodx = round(random.randrange(0, window_width - snake_block) / 10.0) * 10.0
+                    foody = round(random.randrange(0, window_height - snake_block) /10.0) * 10.0
+                    length_of_snake += 1
+                    
+         # set the game speed
+        clock.tick(snake_speed)
+        
+       # Quit the game
+    pygame.quit()
+    quit()
+    
+   # start the game loop
+game_loop()
+        
